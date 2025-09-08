@@ -33,12 +33,27 @@
       z-index: 1000;
     }
 
+    /* --- LOGO ANIMATION --- */
     nav .logo {
       font-size: 1.5rem;
       font-weight: bold;
-      color: #00f5ff;
       text-shadow: 0 0 10px rgba(0,245,255,0.8);
+      
+      /* Animated Gradient Text */
+      background: linear-gradient(90deg, #00f5ff, #ff2d95, #7b2ff7, #00f5ff);
+      background-size: 200% auto;
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: animateGradient 5s linear infinite;
     }
+
+    @keyframes animateGradient {
+      0% { background-position: 0% 50%; }
+      100% { background-position: 200% 50%; }
+    }
+    /* --- END LOGO ANIMATION --- */
+
 
     nav ul {
       list-style: none;
@@ -56,6 +71,24 @@
     nav ul li a:hover {
       color: #00f5ff;
     }
+    
+    /* --- HAMBURGER MENU ICON --- */
+    .hamburger {
+        display: none;
+        cursor: pointer;
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .hamburger .line {
+        width: 25px;
+        height: 3px;
+        background-color: #fff;
+        border-radius: 5px;
+        transition: all 0.3s ease-in-out;
+    }
+    /* --- END HAMBURGER MENU ICON --- */
+
 
     /* Hero Section */
     header {
@@ -277,19 +310,66 @@
     html {
       scroll-behavior: smooth;
     }
+
+    /* --- RESPONSIVE NAVBAR STYLES --- */
+    @media (max-width: 768px) {
+        nav {
+            padding: 15px 25px; /* Adjust padding for smaller screens */
+        }
+        
+        .hamburger {
+            display: flex; /* Show the hamburger icon */
+        }
+
+        .nav-links {
+            position: fixed;
+            top: 0;
+            right: -100%; /* Start off-screen */
+            width: 60%;
+            height: 100vh;
+            background: rgba(18, 18, 26, 0.9);
+            backdrop-filter: blur(15px);
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 40px;
+            transition: right 0.5s ease-in-out;
+        }
+
+        .nav-links.active {
+            right: 0; /* Slide in */
+        }
+
+        /* Animate hamburger to a close 'X' icon */
+        .hamburger.active .line:nth-child(1) {
+            transform: translateY(8px) rotate(45deg);
+        }
+        .hamburger.active .line:nth-child(2) {
+            opacity: 0;
+        }
+        .hamburger.active .line:nth-child(3) {
+            transform: translateY(-8px) rotate(-45deg);
+        }
+    }
+    /* --- END RESPONSIVE STYLES --- */
   </style>
 </head>
 <body>
 
   <nav>
     <div class="logo">PixelForge</div>
-    <ul>
+    <ul class="nav-links">
       <li><a href="#about">About</a></li>
       <li><a href="#services">Services</a></li>
       <li><a href="#portfolio">Portfolio</a></li>
       <li><a href="#team">Team</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
+    <div class="hamburger">
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+    </div>
   </nav>
 
   <header>
@@ -389,6 +469,18 @@
   <footer>
     © 2025 PixelForge. All rights reserved.
   </footer>
+
+  <script>
+    const hamburger = document.querySelector('.hamburger');
+    const navLinks = document.querySelector('.nav-links');
+
+    hamburger.addEventListener('click', () => {
+      // Toggle nav menu
+      navLinks.classList.toggle('active');
+      // Animate hamburger icon
+      hamburger.classList.toggle('active');
+    });
+  </script>
 
 </body>
 </html>
