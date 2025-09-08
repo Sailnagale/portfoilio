@@ -33,15 +33,12 @@
       z-index: 1000;
     }
 
-    /* --- LOGO STYLE (Removed gradient animation) --- */
     nav .logo {
       font-size: 1.5rem;
       font-weight: bold;
-      color: #00f5ff; /* Reverted to solid color */
+      color: #00f5ff;
       text-shadow: 0 0 10px rgba(0,245,255,0.8);
     }
-    /* --- END LOGO STYLE --- */
-
 
     nav ul {
       list-style: none;
@@ -60,7 +57,6 @@
       color: #00f5ff;
     }
     
-    /* --- HAMBURGER MENU ICON --- */
     .hamburger {
         display: none;
         cursor: pointer;
@@ -75,8 +71,6 @@
         border-radius: 5px;
         transition: all 0.3s ease-in-out;
     }
-    /* --- END HAMBURGER MENU ICON --- */
-
 
     /* Hero Section */
     header {
@@ -87,32 +81,37 @@
       text-align: center;
       position: relative;
       overflow: hidden;
+      padding: 0 20px; /* Add some horizontal padding for safety */
     }
 
     header h1 {
-      font-size: 3rem;
+      /* --- RESPONSIVE H1 FIX --- */
+      /* UPDATED: font-size with clamp() for responsiveness. */
+      /* It will try to be 8vw, but won't go below 2rem or above 4rem. */
+      font-size: clamp(2rem, 8vw, 4rem);
+      /* REMOVED: white-space: nowrap; to allow text to wrap on small screens */
+      /* --- END FIX --- */
+      
       margin-bottom: 20px;
       text-shadow: 0 0 15px rgba(0,245,255,0.7);
-      color: #00f5ff; /* Reverted to solid color */
-      position: relative; /* Needed for absolute positioning of spans */
-      display: inline-block; /* To contain spans within the text line */
-      white-space: nowrap; /* Prevent words from breaking */
+      color: #00f5ff;
+      position: relative;
+      display: inline-block;
     }
     
-    /* --- CRAZY LETTER ANIMATION STYLES --- */
+    /* Crazy Letter Animation Styles */
     header h1 .letter {
-      display: inline-block; /* Each letter is its own block */
-      opacity: 0; /* Start hidden */
-      transform: translateY(-50px) rotate(30deg) scale(0.5); /* Start off-position, rotated, and small */
-      transition: transform 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55), opacity 0.6s ease-out; /* Smooth springy transition */
-      text-shadow: 0 0 5px rgba(0,245,255,0.7); /* Maintain text shadow */
+      display: inline-block;
+      opacity: 0;
+      transform: translateY(-50px) rotate(30deg) scale(0.5);
+      transition: transform 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55), opacity 0.6s ease-out;
+      text-shadow: 0 0 5px rgba(0,245,255,0.7);
     }
 
     header h1 .letter.animate {
-      opacity: 1; /* Fade in */
-      transform: translateY(0) rotate(0deg) scale(1); /* Settle into place */
+      opacity: 1;
+      transform: translateY(0) rotate(0deg) scale(1);
     }
-    /* --- END CRAZY LETTER ANIMATION --- */
 
     header p {
       font-size: 1.2rem;
@@ -321,17 +320,17 @@
     /* --- RESPONSIVE NAVBAR STYLES --- */
     @media (max-width: 768px) {
         nav {
-            padding: 15px 25px; /* Adjust padding for smaller screens */
+            padding: 15px 25px;
         }
         
         .hamburger {
-            display: flex; /* Show the hamburger icon */
+            display: flex;
         }
 
         .nav-links {
             position: fixed;
             top: 0;
-            right: -100%; /* Start off-screen */
+            right: -100%;
             width: 60%;
             height: 100vh;
             background: rgba(18, 18, 26, 0.9);
@@ -344,10 +343,9 @@
         }
 
         .nav-links.active {
-            right: 0; /* Slide in */
+            right: 0;
         }
 
-        /* Animate hamburger to a close 'X' icon */
         .hamburger.active .line:nth-child(1) {
             transform: translateY(8px) rotate(45deg);
         }
@@ -358,7 +356,6 @@
             transform: translateY(-8px) rotate(-45deg);
         }
     }
-    /* --- END RESPONSIVE STYLES --- */
   </style>
 </head>
 <body>
@@ -479,7 +476,6 @@
   </footer>
 
   <script>
-    // --- HAMBURGER MENU JS ---
     const hamburger = document.querySelector('.hamburger');
     const navLinks = document.querySelector('.nav-links');
 
@@ -488,26 +484,22 @@
       hamburger.classList.toggle('active');
     });
 
-    // --- CRAZY LETTER ANIMATION JS ---
     document.addEventListener('DOMContentLoaded', () => {
       const h1Element = document.querySelector('header h1');
       const text = h1Element.textContent;
-      h1Element.innerHTML = ''; // Clear original text
+      h1Element.innerHTML = '';
 
-      // Wrap each letter in a span
       Array.from(text).forEach((letter, index) => {
         const span = document.createElement('span');
-        span.textContent = letter === ' ' ? '\u00A0' : letter; // Handle spaces correctly
+        span.textContent = letter === ' ' ? '\u00A0' : letter;
         span.classList.add('letter');
         h1Element.appendChild(span);
 
-        // Stagger the animation
         setTimeout(() => {
           span.classList.add('animate');
-        }, index * 100); // Adjust delay for faster/slower stagger
+        }, index * 100);
       });
     });
-    // --- END CRAZY LETTER ANIMATION JS ---
   </script>
 
 </body>
