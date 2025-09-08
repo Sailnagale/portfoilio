@@ -40,6 +40,14 @@
       text-shadow: 0 0 10px rgba(0,245,255,0.8);
     }
 
+    /* --- New Logo Image Styles --- */
+    nav .logo img {
+        height: 40px; /* Controls the height of the logo */
+        width: auto; /* Maintains aspect ratio */
+        display: block;
+    }
+    /* --- End New Logo Image Styles --- */
+
     nav ul {
       list-style: none;
       display: flex;
@@ -238,6 +246,7 @@
       border-radius: 20px;
       backdrop-filter: blur(10px);
       transition: all 0.4s ease;
+      cursor: pointer; /* Added cursor pointer for better UX */
     }
     
     .card img {
@@ -296,7 +305,7 @@
       margin: 10px 0;
     }
 
-    /* --- Book Project Section --- */
+    /* Book Project Section */
     .cta-button {
         display: inline-block;
         padding: 15px 35px;
@@ -313,7 +322,6 @@
         transform: scale(1.05);
         box-shadow: 0 0 25px rgba(0, 245, 255, 0.5);
     }
-    /* --- End Book Project Section --- */
 
     /* Footer */
     footer {
@@ -373,7 +381,9 @@
 <body>
 
   <nav>
-    <div class="logo">SiteSathi</div>
+    <div class="logo">
+        <img src="logo.jpg" alt="SiteSathi Logo">
+    </div>
     <ul class="nav-links">
       <li><a href="#about">About</a></li>
       <li><a href="#services">Services</a></li>
@@ -392,7 +402,6 @@
     <div>
       <h1>Welcome to SiteSathi</h1>
       <p>Crafting modern, innovative, and premium websites</p>
-      <a href="https://form.typeform.com/to/HOLyepl8" target="_blank" class="cta-button">Start Your Project Brief</a>
     </div>
     <div class="wave"></div>
   </header>
@@ -448,15 +457,21 @@
     <p>Here are some demo projects showcasing our creativity and technical skills.</p>
     <div class="portfolio-grid">
       <div class="card">
-        <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085" alt="Demo 1">
+        <a href="https://agriaihackathon.netlify.app/" target="_blank" rel="noopener noreferrer">
+            <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085" alt="Demo 1">
+        </a>
         <p>Modern Business Website</p>
       </div>
       <div class="card">
-        <img src="https://images.unsplash.com/photo-1559028012-481c04fa702d" alt="Demo 2">
+        <a href="https://agriaihackathon.netlify.app/" target="_blank" rel="noopener noreferrer">
+            <img src="https://images.unsplash.com/photo-1559028012-481c04fa702d" alt="Demo 2">
+        </a>
         <p>Creative Portfolio Site</p>
       </div>
       <div class="card">
-        <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f" alt="Demo 3">
+        <a href="https://agriaihackathon.netlify.app/" target="_blank" rel="noopener noreferrer">
+            <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f" alt="Demo 3">
+        </a>
         <p>Startup Landing Page</p>
       </div>
     </div>
@@ -488,8 +503,9 @@
     <h2>Have a Project in Mind?</h2>
     <p>Ready to bring your idea to life? Fill out our project brief form, and we'll get back to you with a detailed proposal and timeline. Let's build something amazing together!</p>
     <a href="https://form.typeform.com/to/HOLyepl8" target="_blank" class="cta-button">Start Your Project Brief</a>
-    <img src="poster.jpg" alt="SiteSathi Project Poster" style="margin-top: 40px;">
+    <img src="https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?q=80&w=800" alt="SiteSathi Project Poster" style="margin-top: 40px;">
   </section>
+
   <footer>
     © 2025 SiteSathi. All rights reserved.
   </footer>
