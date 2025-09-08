@@ -33,26 +33,14 @@
       z-index: 1000;
     }
 
-    /* --- LOGO ANIMATION --- */
+    /* --- LOGO STYLE (Removed gradient animation) --- */
     nav .logo {
       font-size: 1.5rem;
       font-weight: bold;
+      color: #00f5ff; /* Reverted to solid color */
       text-shadow: 0 0 10px rgba(0,245,255,0.8);
-      
-      /* Animated Gradient Text */
-      background: linear-gradient(90deg, #00f5ff, #ff2d95, #7b2ff7, #00f5ff);
-      background-size: 200% auto;
-      background-clip: text;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      animation: animateGradient 5s linear infinite;
     }
-
-    @keyframes animateGradient {
-      0% { background-position: 0% 50%; }
-      100% { background-position: 200% 50%; }
-    }
-    /* --- END LOGO ANIMATION --- */
+    /* --- END LOGO STYLE --- */
 
 
     nav ul {
@@ -105,17 +93,26 @@
       font-size: 3rem;
       margin-bottom: 20px;
       text-shadow: 0 0 15px rgba(0,245,255,0.7);
-      
-      /* --- H1 ANIMATION --- */
-      /* Apply the same animated gradient text effect */
-      background: linear-gradient(90deg, #00f5ff, #ff2d95, #7b2ff7, #00f5ff);
-      background-size: 200% auto;
-      background-clip: text;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      animation: animateGradient 5s linear infinite; /* Reuse the same animation */
-      /* --- END H1 ANIMATION --- */
+      color: #00f5ff; /* Reverted to solid color */
+      position: relative; /* Needed for absolute positioning of spans */
+      display: inline-block; /* To contain spans within the text line */
+      white-space: nowrap; /* Prevent words from breaking */
     }
+    
+    /* --- CRAZY LETTER ANIMATION STYLES --- */
+    header h1 .letter {
+      display: inline-block; /* Each letter is its own block */
+      opacity: 0; /* Start hidden */
+      transform: translateY(-50px) rotate(30deg) scale(0.5); /* Start off-position, rotated, and small */
+      transition: transform 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55), opacity 0.6s ease-out; /* Smooth springy transition */
+      text-shadow: 0 0 5px rgba(0,245,255,0.7); /* Maintain text shadow */
+    }
+
+    header h1 .letter.animate {
+      opacity: 1; /* Fade in */
+      transform: translateY(0) rotate(0deg) scale(1); /* Settle into place */
+    }
+    /* --- END CRAZY LETTER ANIMATION --- */
 
     header p {
       font-size: 1.2rem;
@@ -482,15 +479,35 @@
   </footer>
 
   <script>
+    // --- HAMBURGER MENU JS ---
     const hamburger = document.querySelector('.hamburger');
     const navLinks = document.querySelector('.nav-links');
 
     hamburger.addEventListener('click', () => {
-      // Toggle nav menu
       navLinks.classList.toggle('active');
-      // Animate hamburger icon
       hamburger.classList.toggle('active');
     });
+
+    // --- CRAZY LETTER ANIMATION JS ---
+    document.addEventListener('DOMContentLoaded', () => {
+      const h1Element = document.querySelector('header h1');
+      const text = h1Element.textContent;
+      h1Element.innerHTML = ''; // Clear original text
+
+      // Wrap each letter in a span
+      Array.from(text).forEach((letter, index) => {
+        const span = document.createElement('span');
+        span.textContent = letter === ' ' ? '\u00A0' : letter; // Handle spaces correctly
+        span.classList.add('letter');
+        h1Element.appendChild(span);
+
+        // Stagger the animation
+        setTimeout(() => {
+          span.classList.add('animate');
+        }, index * 100); // Adjust delay for faster/slower stagger
+      });
+    });
+    // --- END CRAZY LETTER ANIMATION JS ---
   </script>
 
 </body>
