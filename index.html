@@ -105,6 +105,16 @@
       font-size: 3rem;
       margin-bottom: 20px;
       text-shadow: 0 0 15px rgba(0,245,255,0.7);
+      
+      /* --- H1 ANIMATION --- */
+      /* Apply the same animated gradient text effect */
+      background: linear-gradient(90deg, #00f5ff, #ff2d95, #7b2ff7, #00f5ff);
+      background-size: 200% auto;
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: animateGradient 5s linear infinite; /* Reuse the same animation */
+      /* --- END H1 ANIMATION --- */
     }
 
     header p {
