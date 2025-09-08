@@ -81,17 +81,11 @@
       text-align: center;
       position: relative;
       overflow: hidden;
-      padding: 0 20px; /* Add some horizontal padding for safety */
+      padding: 0 20px;
     }
 
     header h1 {
-      /* --- RESPONSIVE H1 FIX --- */
-      /* UPDATED: font-size with clamp() for responsiveness. */
-      /* It will try to be 8vw, but won't go below 2rem or above 4rem. */
       font-size: clamp(2rem, 8vw, 4rem);
-      /* REMOVED: white-space: nowrap; to allow text to wrap on small screens */
-      /* --- END FIX --- */
-      
       margin-bottom: 20px;
       text-shadow: 0 0 15px rgba(0,245,255,0.7);
       color: #00f5ff;
@@ -99,7 +93,6 @@
       display: inline-block;
     }
     
-    /* Crazy Letter Animation Styles */
     header h1 .letter {
       display: inline-block;
       opacity: 0;
@@ -303,6 +296,25 @@
       margin: 10px 0;
     }
 
+    /* --- Book Project Section --- */
+    .cta-button {
+        display: inline-block;
+        padding: 15px 35px;
+        background: linear-gradient(90deg, #00f5ff, #7b2ff7);
+        color: #fff;
+        text-decoration: none;
+        font-weight: bold;
+        border-radius: 50px;
+        margin-top: 10px;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .cta-button:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 25px rgba(0, 245, 255, 0.5);
+    }
+    /* --- End Book Project Section --- */
+
     /* Footer */
     footer {
       text-align: center;
@@ -380,6 +392,7 @@
     <div>
       <h1>Welcome to SiteSathi</h1>
       <p>Crafting modern, innovative, and premium websites</p>
+      <a href="https://form.typeform.com/to/HOLyepl8" target="_blank" class="cta-button">Start Your Project Brief</a>
     </div>
     <div class="wave"></div>
   </header>
@@ -471,6 +484,12 @@
     <p>📧 Email: omakamble8483@gamil.com</p>
   </section>
 
+  <section id="book-project">
+    <h2>Have a Project in Mind?</h2>
+    <p>Ready to bring your idea to life? Fill out our project brief form, and we'll get back to you with a detailed proposal and timeline. Let's build something amazing together!</p>
+    <a href="https://form.typeform.com/to/HOLyepl8" target="_blank" class="cta-button">Start Your Project Brief</a>
+    <img src="poster.jpg" alt="SiteSathi Project Poster" style="margin-top: 40px;">
+  </section>
   <footer>
     © 2025 SiteSathi. All rights reserved.
   </footer>
